@@ -43,46 +43,53 @@ public class ItemsImpl implements ItemsService {
 
 	@Override
 	public void deleteItem(Long itemId) {
-		
+
 		Optional<Items> item = Optional.ofNullable(itemRepositoty.findById(itemId).get());
 
 		if (item.isPresent()) {
 			itemRepositoty.deleteById(itemId);
-			
-		}else {
+
+		} else {
 			throw new RuntimeException(" Item Does Not Exist with Id :" + itemId);
 		}
-		
 
 	}
 
 	@Override
-	public void updateItem(Items items,Long itemId) {
-		
+	public void updateItem(Items items, Long itemId) {
+
 		Optional<Items> item = Optional.ofNullable(itemRepositoty.findById(itemId).get());
-		
+
 		if (item.isPresent()) {
-			
+
 			item.get().setCategory(items.getCategory());
 			item.get().setQuantity(items.getQuantity());
 			item.get().setItemCode(items.getItemCode());
 			item.get().setItemName(items.getItemName());
 			item.get().setStatus(items.getStatus());
 			item.get().setModifiedOn(new Date());
-			//item.get().setCreatedBy(items.getCreatedBy());
+			// item.get().setCreatedBy(items.getCreatedBy());
 			item.get().setModifiedBy(items.getModifiedBy());
 			itemRepositoty.save(item.get());
-			
-		}
-		else {
+
+		} else {
 			throw new RuntimeException(" Item Does Not Exist with Id :" + itemId);
-			
+
 		}
-		
-		
-		
-		
-		
+
+	}
+
+	@Override
+	public Items getItemById(Long id) {
+		Optional<Items> item = itemRepositoty.findById(id);
+
+		if (item.isPresent()) {
+
+			item = Optional.of(item.get());
+
+		}
+		return item.get();
+
 	}
 
 }

@@ -10,6 +10,8 @@ public interface ItemsService {
 	
 	public List<Items>getAllItems();
 	
+	public Items getItemById(Long id);
+	
 	public void deleteItem(Long itemId);
 	
 	public void updateItem(Items items,Long itemId);

@@ -32,7 +32,7 @@ public class UserAPI {
 	@PostMapping("/register")
 	public ResponseEntity<User> createUser(@RequestBody User user) {
 		User userCreated = userServiceImpl.addNewUser(user);
-		return new ResponseEntity<User>(userCreated, HttpStatus.CREATED);
+		return new ResponseEntity<User>(userCreated, HttpStatus.OK);
 	}
      @Operation(summary = " Validate UserName and Password ", description = " UserName and password must be send in the Request Payload ")
 	

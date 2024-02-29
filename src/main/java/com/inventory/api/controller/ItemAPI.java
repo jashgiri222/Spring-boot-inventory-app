@@ -81,4 +81,9 @@ public class ItemAPI {
 		itemsImpl.updateItem(items, itemId);
 		return new ResponseEntity<>("Item Updated Success", HttpStatus.OK);
 	}
+	@GetMapping("/finditem/{itemId}")
+	public ResponseEntity<Items> updateItems( @PathVariable Long itemId) {
+		Items item =itemsImpl.getItemById(itemId);
+		return new ResponseEntity<>(item, HttpStatus.OK);
+	}
 }
